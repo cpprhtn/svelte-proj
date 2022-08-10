@@ -1,4 +1,5 @@
 <script>
+	import Child from './Child.svelte';
 	export let name;
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -33,6 +34,8 @@
 		*/
 	}
 </script>
+
+<Child test="Cpprhtn 입니다."/>
 
 <main>
 	<h1>Hello {name}!</h1>
