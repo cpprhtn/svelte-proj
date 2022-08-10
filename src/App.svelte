@@ -33,9 +33,18 @@
 		console.log(numbers);
 		*/
 	}
-</script>
 
-<Child test="Cpprhtn 입니다."/>
+	// Spread
+	let info = {
+		myname: 'Cpprhtn',
+		job: 'AI Developer',
+		website: 'https://cpprhtn.duckdns.org'
+	}
+	</script>
+
+<Child 
+	{...info}
+/>
 
 <main>
 	<h1>Hello {name}!</h1>
