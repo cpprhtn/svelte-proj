@@ -47,6 +47,13 @@
 	function handleAddX () {
 		x += 1;
 	}
+
+	// 반복문
+	let list = [
+		{ id: 1, text: 'test 1' },
+		{ id: 2, text: 'test 2' },
+		{ id: 3, text: 'test 3' },
+	]
 	</script>
 
 <main>
@@ -83,6 +90,19 @@
 {:else}
 	<p>{x}는 5보다 작거나 같습니다.</p>
 {/if}
+
+<hr>
+
+<ul>
+	{#each list as item}
+	<li>{item.id}, {item.text}</li>
+	{/each}
+</ul>
+<ul>
+	{#each list as {id, text}, i}
+	<li>{i}: {id}, {text}</li>
+	{/each}
+</ul>
 
 <style>
 	main {
