@@ -54,6 +54,24 @@
 		{ id: 2, text: 'test 2' },
 		{ id: 3, text: 'test 3' },
 	]
+
+	function addItem () {
+		const id = Math.max(...list.map(x => x.id)) + 1;
+		list = [...list, {id, text: `test ${id}`}];
+	}
+
+	function removeItem () {
+		list.shift();
+		list = list;
+	}
+
+	function resetItem () {
+		list = [
+			{ id: 1, text: 'test 1' },
+			{ id: 2, text: 'test 2' },
+			{ id: 3, text: 'test 3' }
+		];
+	}
 	</script>
 
 <main>
@@ -93,14 +111,39 @@
 
 <hr>
 
+<button on:click={addItem}>Add</button>
+<button on:click={removeItem}>Remove</button>
+<button on:click={resetItem}>Reset</button>
+
+<!--ul 1-->
 <ul>
 	{#each list as item}
 	<li>{item.id}, {item.text}</li>
 	{/each}
 </ul>
+
+<!--ul 2-->
 <ul>
 	{#each list as {id, text}, i}
 	<li>{i}: {id}, {text}</li>
+	{/each}
+</ul>
+
+<!--ul 3: 반복문에 Key를 지정하는 방식
+svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 비효율적.
+따라서 Key를 지정하여 변경되는 부분을 명시하여 svelte가 좀 더 효율적으로 동작하도록 함.
+
+확인해보니 svelte가 업데이트 되면서 해당 부분은 자동으로 효율적으로 동작하도록 개선완료.
+-->
+<ul>
+	{#each list as {id, text} (id)}
+	<li>{id}, {text}</li>
+	{/each}
+</ul>
+
+<ul>
+	{#each list as item (item.id)}
+	<li>{item.id}, {item.text}</li>
 	{/each}
 </ul>
 
