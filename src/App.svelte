@@ -88,6 +88,20 @@
 	function handleClick2 () {
 		promise = sayHello();
 	}
+
+	// DOM event
+	let m = {x:0,y:0};
+	let isEnter = false;
+	function handleMousemove (event) {
+		m.x = event.clientX;
+		m.y = event.clientY;
+	}
+	function handleMouseenter () {
+		isEnter = true;
+	}
+	function handleMouseleave () {
+		isEnter = false;
+	}
 	</script>
 
 <main>
@@ -178,6 +192,17 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 		font-weight: 100;
 	}
 
+	div {
+		width: 100%;
+		height: 100%;
+	}
+	div>div {
+		width: 300px;
+		height: 300px;
+		background-color: blue;
+		font-size: 80px;
+	}
+
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
@@ -205,3 +230,15 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 {#await promise then data}
 	<p>{data}</p>
 {/await}
+
+<!--DOM event-->
+<hr>
+
+<div on:mousemove={handleMousemove}>
+	마우스 위치: {m.x}, {m.y}
+	<div 
+	on:mouseenter={handleMouseenter}
+	on:mouseleave={handleMouseleave}>
+	{isEnter ? 'Enter':'Leave'}
+	</div>
+</div>
