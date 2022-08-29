@@ -72,6 +72,22 @@
 			{ id: 3, text: 'test 3' }
 		];
 	}
+
+	// await block
+	let promise;
+
+	function sayHello () {
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+				resolve('Hello World')
+				//reject(new Error('에러 발생!'));
+			}, 1000)
+		})
+	}
+
+	function handleClick2 () {
+		promise = sayHello();
+	}
 	</script>
 
 <main>
@@ -168,3 +184,24 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 		}
 	}
 </style>
+
+<!--await block-->
+
+<hr>
+
+<button on:click={handleClick2}>인사하기</button>
+
+{#await promise}
+	<p>인사를 기다리는 중...</p>
+{:then data}
+	<p>{data}</p>
+{:catch error}
+	<p>{error.message}</p>
+{/await}
+
+<hr>
+
+<!--결과가 오기전까지 출력문구는 사용할 수 없음-->
+{#await promise then data}
+	<p>{data}</p>
+{/await}
