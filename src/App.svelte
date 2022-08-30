@@ -103,8 +103,13 @@
 		isEnter = false;
 	}
 
-	// 이벤트 수식어
+	// inline handler
 	let ev = {x:0, y:0};
+
+	// 이벤트 수식어
+	function handleClick3 () {
+		alert('CLICK');
+	}
 	</script>
 
 <main>
@@ -197,7 +202,7 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 
 	div {
 		width: 100%;
-		height: 100%;
+		height: 50%;
 	}
 	div>div {
 		width: 300px;
@@ -246,10 +251,15 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 	</div>
 </div>
 
-<!--이벤트 수식어-->
+<!--inline handler-->
 <!--svelte는 inline handler를 사용해도 컴파일할떄 최적화가 되기 때문에 사용해도 상관없음-->
 <hr>
 
 <div on:mousemove={e => ev = {x: e.clientX, y: e.clientY}}>
 	마우스 위치: {ev.x}, {ev.y}
 </div>
+
+<!--이벤트 수식어-->
+
+<hr>
+<button on:click|once={handleClick3}>Click</button>
