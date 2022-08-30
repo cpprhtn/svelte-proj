@@ -102,6 +102,9 @@
 	function handleMouseleave () {
 		isEnter = false;
 	}
+
+	// 이벤트 수식어
+	let ev = {x:0, y:0};
 	</script>
 
 <main>
@@ -241,4 +244,12 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 	on:mouseleave={handleMouseleave}>
 	{isEnter ? 'Enter':'Leave'}
 	</div>
+</div>
+
+<!--이벤트 수식어-->
+<!--svelte는 inline handler를 사용해도 컴파일할떄 최적화가 되기 때문에 사용해도 상관없음-->
+<hr>
+
+<div on:mousemove={e => ev = {x: e.clientX, y: e.clientY}}>
+	마우스 위치: {ev.x}, {ev.y}
 </div>
