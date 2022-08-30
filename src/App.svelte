@@ -1,6 +1,7 @@
 <script>
 	import Child from './Child.svelte';
 	import Child2 from './Child2.svelte';
+	import Parent from './Parent.svelte';
 	export let name;
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -275,3 +276,7 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 <hr>
 
 <Child2 on:message={handleMessage}/>
+
+<hr>
+
+<Parent on:message={handleMessage}/>
