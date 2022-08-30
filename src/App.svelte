@@ -1,5 +1,6 @@
 <script>
 	import Child from './Child.svelte';
+	import Child2 from './Child2.svelte';
 	export let name;
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -109,6 +110,11 @@
 	// 이벤트 수식어
 	function handleClick3 () {
 		alert('CLICK');
+	}
+
+	// 컴포넌트 이벤트
+	function handleMessage (event) {
+		alert(event.detail.text);
 	}
 	</script>
 
@@ -263,3 +269,9 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 
 <hr>
 <button on:click|once={handleClick3}>Click</button>
+
+<!--컴포넌드 이벤트-->
+
+<hr>
+
+<Child2 on:message={handleMessage}/>
