@@ -117,6 +117,14 @@
 	function handleMessage (event) {
 		alert(event.detail.text);
 	}
+
+	// input 태그
+	let name_ = 'cpprhtn';
+	let a = 1;
+	let yes = false;
+	let picked = null;
+	const names = ['cpprhtn', 'world', 'test'];
+	let checkedNames = [];
 	</script>
 
 <main>
@@ -280,3 +288,37 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 <hr>
 
 <Parent on:message={handleMessage}/>
+
+<hr>
+<input type="text" bind:value={name_}>
+<h1>{name_}</h1>
+
+<input type="number" bind:value={a} min="0" max="10">
+<input type="range" bind:value={a} min="0" max="10">
+<h1>{a}</h1>
+
+<input type="checkbox" bind:checked={yes}>
+{#if yes}
+	<p>YES</p>
+{:else}
+	<p>NO</p>
+{/if}
+
+<label>
+	<input type="radio" value="One" bind:group={picked}>
+	One
+</label>
+
+<label>
+	<input type="radio" value="Two" bind:group={picked}>
+	Two
+</label>
+<h1>{picked}</h1>
+
+{#each names as name, index (index)}
+	<label>
+		<input type="checkbox" value={name} bind:group={checkedNames}>
+		{name}
+	</label>
+{/each}
+<h1>{checkedNames}</h1>
