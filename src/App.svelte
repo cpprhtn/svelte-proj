@@ -3,6 +3,7 @@
 	import Child2 from './Child2.svelte';
 	import Parent from './Parent.svelte';
 	import Child3 from './Child3.svelte';
+	import Child4 from './Child4.svelte';
 	export let name;
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -129,6 +130,9 @@
 
 	// onMount
 	let condition = true;
+
+	// onDestroy
+	let condition2 = true;
 </script>
 
 <main>
@@ -335,3 +339,12 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 {#if condition}
  <Child3 />
  {/if}
+
+ <!-- onDestory -->
+ <hr>
+
+ <button on:click={() => { condition2 = !condition2 }}>Toggle</button>
+
+ {#if condition2}
+	<Child4 />
+{/if}
