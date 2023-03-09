@@ -2,6 +2,7 @@
 	import Child from './Child.svelte';
 	import Child2 from './Child2.svelte';
 	import Parent from './Parent.svelte';
+	import Child3 from './Child3.svelte';
 	export let name;
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -125,7 +126,10 @@
 	let picked = null;
 	const names = ['cpprhtn', 'world', 'test'];
 	let checkedNames = [];
-	</script>
+
+	// onMount
+	let condition = true;
+</script>
 
 <main>
 	<h1>Hello {name}!</h1>
@@ -322,3 +326,12 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 	</label>
 {/each}
 <h1>{checkedNames}</h1>
+
+<!-- onMount -->
+<hr>
+
+<button on:click={() => { condition = !condition }}>Toggle</button>
+
+{#if condition}
+ <Child3 />
+ {/if}
