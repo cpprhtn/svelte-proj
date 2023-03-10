@@ -4,6 +4,7 @@
 	import Parent from './Parent.svelte';
 	import Child3 from './Child3.svelte';
 	import Child4 from './Child4.svelte';
+	import Child5 from './Child5.svelte';
 	export let name;
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -133,6 +134,9 @@
 
 	// onDestroy
 	let condition2 = true;
+
+	// 라이프 사이클 모듈화
+	let condition3 = true;
 </script>
 
 <main>
@@ -347,4 +351,13 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 
  {#if condition2}
 	<Child4 />
+{/if}
+
+<!-- 라이프 사이클 모듈화 -->
+<hr>
+
+<button on:click={() => { condition3 = !condition3 }}>Toggle</button>
+
+{#if condition3}
+   <Child5 />
 {/if}
