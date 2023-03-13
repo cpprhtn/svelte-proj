@@ -5,7 +5,8 @@
 	import Child3 from './Child3.svelte';
 	import Child4 from './Child4.svelte';
 	import Child5 from './Child5.svelte';
-	import { beforeUpdate, afterUpdate, onMount } from 'svelte'; 
+	import { beforeUpdate, afterUpdate, onMount, tick } from 'svelte'; 
+	// import { tick } from 'svelte';
 	export let name;
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -155,7 +156,29 @@
 		console.log('afterUpdate', p.innerText);
 	})
 
-</script>
+	// tick
+	let text = 'Hello Cpprhtn';
+	async function handleKeydown (event) {
+		if (event.which !== 9) return;
+
+		const { selectionStart, selectionEnd, value } = this;
+		const selection = value.slice(selectionStart, selectionEnd);
+
+		const replacement = /[a-z]/.test(selection)
+			? selection.toUpperCase()
+			: selection.toLowerCase();
+
+		text = (
+			value.slice(0, selectionStart) + 
+			replacement + 
+			value.slice(selectionEnd)
+		);
+
+		await tick(); // 틱을 사용하여 변경후에도 selection을 유지시킬 수 있음
+		this.selectionStart = selectionStart;
+		this.selectionEnd = selectionEnd;
+	}
+	</script>
 
 <main>
 	<h1>Hello {name}!</h1>
@@ -254,6 +277,11 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 		height: 300px;
 		background-color: blue;
 		font-size: 80px;
+	}
+
+	textarea {
+		width: 100%;
+		height: 200px;
 	}
 
 	@media (min-width: 640px) {
@@ -383,3 +411,6 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 <!-- beforeUpdate와 afterUpdate -->
 <button on:click={() => {num += 1}}>Add</button>
 <p bind:this={p}>{num}</p>
+
+<!-- tick -->
+<textarea value={text} on:keydown|preventDefault={handleKeydown}></textarea>
