@@ -5,6 +5,7 @@
 	import Child3 from './Child3.svelte';
 	import Child4 from './Child4.svelte';
 	import Child5 from './Child5.svelte';
+	import { beforeUpdate, afterUpdate, onMount } from 'svelte'; 
 	export let name;
 	let count = 0;
 	let numbers = [1, 2, 3, 4];
@@ -137,6 +138,23 @@
 
 	// 라이프 사이클 모듈화
 	let condition3 = true;
+
+	// beforeUpdate, afterUpdate
+	let num = 0;
+	let p;
+
+	beforeUpdate(() => {
+		console.log('beforeUpdate', p && p.innerText);
+	});
+
+	onMount(() => {
+		console.log('onMount');
+	});
+
+	afterUpdate(() => {
+		console.log('afterUpdate', p.innerText);
+	})
+
 </script>
 
 <main>
@@ -361,3 +379,7 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 {#if condition3}
    <Child5 />
 {/if}
+
+<!-- beforeUpdate와 afterUpdate -->
+<button on:click={() => {num += 1}}>Add</button>
+<p bind:this={p}>{num}</p>
