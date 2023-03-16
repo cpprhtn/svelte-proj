@@ -178,6 +178,17 @@
 		this.selectionStart = selectionStart;
 		this.selectionEnd = selectionEnd;
 	}
+
+	// Writable stores
+
+	import { counter } from './stores';
+	import Incrementer from './Incrementer.svelte';
+	import Decrementer from './Decrementer.svelte';
+	import Restter from './Resetter.svelte';
+
+	let countValue;
+
+	counter.subscribe(value => countValue = value);
 	</script>
 
 <main>
@@ -414,3 +425,10 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 
 <!-- tick -->
 <textarea value={text} on:keydown|preventDefault={handleKeydown}></textarea>
+
+<!-- Writable stores -->
+<p>count : {countValue}</p>
+
+<Incrementer />
+<Decrementer />
+<Restter />
