@@ -180,7 +180,7 @@
 	}
 
 	// Writable stores
-
+	// import { onDestory } from 'svelte';
 	import { counter } from './stores';
 	import Incrementer from './Incrementer.svelte';
 	import Decrementer from './Decrementer.svelte';
@@ -189,6 +189,12 @@
 	let countValue;
 
 	counter.subscribe(value => countValue = value);
+	// counter 값이 변경될때마다 호출되는 문제점을 해결하기 위해 onDestory를 이용하여 해지
+	// const unsubscribe = counter.subscribe(value => countValue = value);
+
+	// onDestory(() => {
+	// 	unsubscribe();
+	// })
 	</script>
 
 <main>
