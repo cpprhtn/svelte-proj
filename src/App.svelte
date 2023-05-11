@@ -186,9 +186,10 @@
 	import Decrementer from './Decrementer.svelte';
 	import Restter from './Resetter.svelte';
 
-	let countValue;
+	// Store 자동 구독을 사용하면 아래 코드 두줄도 작성할 필요가 없어짐
+	// let countValue;
 
-	counter.subscribe(value => countValue = value);
+	// counter.subscribe(value => countValue = value);
 	// counter 값이 변경될때마다 호출되는 문제점을 해결하기 위해 onDestory를 이용하여 해지
 	// const unsubscribe = counter.subscribe(value => countValue = value);
 
@@ -433,7 +434,8 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 <textarea value={text} on:keydown|preventDefault={handleKeydown}></textarea>
 
 <!-- Writable stores -->
-<p>count : {countValue}</p>
+<!-- <p>count : {countValue}</p> -->
+<p>count : {$counter}</p>
 
 <Incrementer />
 <Decrementer />
