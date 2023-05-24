@@ -197,7 +197,7 @@
 	// 	unsubscribe();
 	// })
 
-	import { time, elapsed } from './stores';
+	import { time, elapsed, cCount } from './stores';
 	</script>
 
 <main>
@@ -448,3 +448,9 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 
 <!-- Derived stores -->
 <p>흐른 시간: {$elapsed}</p>
+
+<!-- custom stores -->
+<p>count: {$cCount}</p>
+<button on:click={cCount.increment}>+</button>
+<button on:click={cCount.decrement}>-</button>
+<button on:click={cCount.reset}>reset</button>
