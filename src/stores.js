@@ -28,3 +28,8 @@ function createCount() {
 }
 
 export const cCount = createCount();
+export const cName = writable('Cpprhtn');
+export const cGreeting = derived(
+    cName,
+    $cName => `Hello ${$cName}`
+);

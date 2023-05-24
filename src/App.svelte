@@ -197,7 +197,7 @@
 	// 	unsubscribe();
 	// })
 
-	import { time, elapsed, cCount } from './stores';
+	import { time, elapsed, cCount, cName, cGreeting } from './stores';
 	</script>
 
 <main>
@@ -454,3 +454,7 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 <button on:click={cCount.increment}>+</button>
 <button on:click={cCount.decrement}>-</button>
 <button on:click={cCount.reset}>reset</button>
+
+<p>{$cGreeting}</p>
+<input type="text" bind:value={$cName}>
+<button on:click={() => $cName += '!'}>Add !</button>
