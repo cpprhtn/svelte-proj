@@ -196,6 +196,8 @@
 	// onDestory(() => {
 	// 	unsubscribe();
 	// })
+
+	import { time } from './stores';
 	</script>
 
 <main>
@@ -440,3 +442,5 @@ svelte는 item이 제거되면, 나머지 남은 item을 모두 update하므로 
 <Incrementer />
 <Decrementer />
 <Restter />
+
+<p>{$time}</p>
